@@ -15,7 +15,7 @@ export default function Product({product}) {
                     {product?.title}
                 </div>
                 <div className="font-extrabold">
-                    CAD ${(product?.price / 100).toFixed(2)}
+                    ${(product?.price / 100).toFixed(2)}
                 </div>
                 <div className="relative flex items-center text-[12px] text-gray-500">
                     <div className="line-through">
