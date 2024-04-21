@@ -1,6 +1,7 @@
 "use client"
 
 import MainLayout from "@/app/layouts/MainLayout"
+import SimilarItems from "../../components/SimilarItems"
 
 export default function Product({ params }) {
 
@@ -55,7 +56,7 @@ export default function Product({ params }) {
                                 </button>
                             </div>
                         </div>
-                        
+
                         <div className="border-b py-1"/>
 
                         <div className="pt-3">
@@ -65,6 +66,8 @@ export default function Product({ params }) {
                     </div>
                 </div>
             </div>
+
+            <SimilarItems/>
         </MainLayout>
     )
 }
