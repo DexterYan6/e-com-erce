@@ -35,7 +35,7 @@ export default function Cart() {
                                 <div>Items (3)</div>
                                 <div>$35</div>
                             </div>
-                            <div className="flex items-center justify-between mt-4 text-sm mb-1">
+                            <div className="flex items-center justify-between mb-4 text-sm">
                                 <div>Shipping:</div>
                                 <div>Free</div>
                             </div>
