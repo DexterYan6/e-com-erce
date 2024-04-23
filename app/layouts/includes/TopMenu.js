@@ -48,7 +48,8 @@ export default function TopMenu() {
                                         My Orders
                                     </Link>
                                 </li>
-                                <li className="text-[11px] py02 px-4 w-full hover:underline text-blue-500 hover:text-blue-600 cursor-pointer">
+                                <li onClick={() => {user.signOut(); setIsMenu(false)}}
+                                className="text-[11px] py02 px-4 w-full hover:underline text-blue-500 hover:text-blue-600 cursor-pointer">
                                     Sign Out
                                 </li>
                             </ul>
