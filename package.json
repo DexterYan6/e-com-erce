@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "prisma": {
-    "seed": "node prisma/seed.js"
+    "seed": "node prisma/seedProduct.js"
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
