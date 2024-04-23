@@ -1,4 +1,5 @@
 import "./globals.css";
+import UserProvider from "./context/user"
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -12,7 +13,11 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <ToastContainer/>
-        {children}
+
+        <UserProvider>
+          {children}
+        </UserProvider>
+        
       </body>
     </html>
   );

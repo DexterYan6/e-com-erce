@@ -1,15 +1,18 @@
 "use client"
 
+import { useIsClient } from "../context/is-client-ctx"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Auth } from "@supabase/auth-ui-react"
 import { ThemeSupa } from "@supabase/auth-ui-shared"
 import Link from "next/link"
 
 export default function AuthPage() {
+    const isClient = useIsClient();
     const supabase = createClientComponentClient();
 
     return (
         <div id="AuthPage" className="w-full min-h-screen bg-white">
+
             <div className="w-full flex items-center justify-center p-5 border-b-gray-300">
                 <Link href="/" className="min-w-[170px]">
                     <img width="170" src="/images/logo.svg"/>
@@ -21,14 +24,15 @@ export default function AuthPage() {
             </div>
 
             <div className="max-w-[400px] mx-auto px-2">
-                <Auth 
+                <Auth
                     onlyThirdPartyProviders
-                    redirectTo={`${window.location.origin}/auth/callback`}
+                    redirectTo={`${isClient && window.location.origin}/auth/callback`}
                     supabaseClient={supabase}
                     providers={['google']}
                     appearance={{theme: ThemeSupa}}
                 />
             </div>
+
         </div>
     )
 }
