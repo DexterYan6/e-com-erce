@@ -8,7 +8,7 @@ export default function CartItem({product}) {
         let res = confirm(`Are you sure you want to remove this? "${product.title}"`)
         if(res) {
             cart.removeFromCart(product)
-            toast.info("Removed from cart", {autoClose: 5000})
+            toast.info("Removed from cart", {autoClose: 3500})
         }
     }
     return (

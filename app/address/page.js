@@ -84,7 +84,7 @@ export default function Address() {
         event.preventDefault()
         let isError = validateInput()
         if(isError) {
-            toast.error(error.message, {autoClose: 3000})
+            toast.error(error.message, {autoClose: 3500})
             return
         }
 
@@ -100,7 +100,7 @@ export default function Address() {
             })
             setCurrAddress(response)
             setIsUpdatingAddress(false)
-            toast.success('Address has been updated', {autoClose: 3000})
+            toast.success('Address has been updated', {autoClose: 3500})
 
             router.push('/checkout')
         } 

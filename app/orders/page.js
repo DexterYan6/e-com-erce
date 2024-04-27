@@ -21,7 +21,7 @@ export default function Orders() {
             setOrders(result)
             useIsLoading(false)
         }catch (error) {
-            toast.error("Something went wrong", {autoClose: 5000})
+            toast.error("Something went wrong", {autoClose: 3500})
             useIsLoading(false)
         }
     }
