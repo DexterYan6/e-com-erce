@@ -2,24 +2,31 @@
 
 import ProductComp from "./Product"
 import {BiLoader} from 'react-icons/bi'
+import { useState, useEffect } from "react"
 
 export default function SimilarItems() {
-    const products = [
-        {
-          id: 1,
-          title: "Brown Leather Bag",
-          description: "Random stuff",
-          url: "https://picsum.photos/id/7",
-          price: 6969
-        },
-        {
-          id: 2,
-          title: "School Books",
-          description: "Random stuff again",
-          url: "https://picsum.photos/id/20",
-          price:7000
+
+    const [products, setProducts] = useState([])
+
+    const getRandomProducts = async () => {
+        try {
+            const response = await fetch("/api/products/get-random")
+            const result = await response.json()
+
+            if(result) {
+                setProducts(result)
+                return
+            }
+
+            setProducts([])
         }
-    ]
+        catch (error) {
+            console.log(error)
+            alert(error)
+        }
+    }
+
+    useEffect(() => {getRandomProducts()}, [])
 
     return (
         <div>
