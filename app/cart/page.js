@@ -3,15 +3,29 @@
 import MainLayout from "../layouts/MainLayout"
 import SimilarItems from "../components/SimilarItems"
 import CartItem from "../components/CartItem"
+import { useRouter } from "next/navigation"
+import { useCart } from "../context/cart"
+import { useEffect } from "react"
+import useIsLoading from "../context/useIsLoading"
+import ClientOnly from "../components/ClientOnly"
 
 export default function Cart() {
+    const router = useRouter()
+    const cart = useCart()
 
-    const product = {
-        id: 1,
-        title: "School Books",
-        description: "Random stuff again",
-        url: "https://picsum.photos/id/20",
-        price:7000
+    useEffect(() => {
+        useIsLoading(true)
+        cart.getCart()
+        cart.cartTotal()
+        useIsLoading(false)
+    }, [cart])
+
+    const goToCheckout = () => {
+        if(!cart.cartTotal()) {
+            alert("There are no items in the cart!")
+            return
+        }
+        router.push('/checkout')
     }
 
     return(
@@ -21,32 +35,39 @@ export default function Cart() {
                     Shopping cart
                 </div>
                 <div className="relative flex items-baseline justify-between gap-2">
-                    <div className="w-[65%]">
-                        <CartItem key={product.id} product={product}/>
-                    </div>
+                    <ClientOnly>
+                        <div className="w-[65%]">
+                            {cart.getCart().map(product => (
+                                <CartItem key={product.id} product={product}/>
+                            ))}
+                        </div>
+                    </ClientOnly>
 
                     <div id="GoToCheckout" className="md:w-[33%] absolute top-0 right-0 m-2">
-                        <div className="bg-white p-4 border">
-                            <button className="flex items-center justify-center bg-blue-600 w-full text-white font-semibold p-3 rounded-full mt-4">
-                                Go to checkout
-                            </button>
+                        <ClientOnly>
+                            <div className="bg-white p-4 border">
+                                <button onClick={() => goToCheckout()} className="flex items-center justify-center bg-blue-600 w-full text-white font-semibold p-3 rounded-full mt-4">
+                                    Go to checkout
+                                </button>
 
-                            <div className="flex items-center justify-between mt-4 text-sm mb-1">
-                                <div>Items (3)</div>
-                                <div>$35</div>
-                            </div>
-                            <div className="flex items-center justify-between mb-4 text-sm">
-                                <div>Shipping:</div>
-                                <div>Free</div>
-                            </div>
+                                <div className="flex items-center justify-between mt-4 text-sm mb-1">
+                                    <div>Items ({cart.getCart().length})</div>
+                                    <div>${(cart.cartTotal() / 100).toFixed(2)}</div>
+                                </div>
+                                <div className="flex items-center justify-between mb-4 text-sm">
+                                    <div>Shipping:</div>
+                                    <div>Free</div>
+                                </div>
 
-                            <div className="border-b border-gray-300"/>
+                                <div className="border-b border-gray-300"/>
 
-                            <div className="flex items-center justify-between mt-4 mb-1 text-lg font-semibold">
-                                <div>Subtotal</div>
-                                <div>$35</div>
+                                <div className="flex items-center justify-between mt-4 mb-1 text-lg font-semibold">
+                                    <div>Subtotal</div>
+                                    <div>${(cart.cartTotal() / 100).toFixed(2)}</div>
+                                </div>
                             </div>
-                        </div>
+                        </ClientOnly>
+                        
                     </div>
                 </div>
             </div>
