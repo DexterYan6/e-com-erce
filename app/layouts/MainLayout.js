@@ -5,7 +5,7 @@ import MainHeader from "./includes/MainHeader"
 import SubMenu from "./includes/SubMenu"
 import Footer from "./includes/Footer"
 import Loading from "../components/Loading"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function MainLayout({ children }) {
     const [isLoading, setIsLoading] = useState(false)
