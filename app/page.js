@@ -3,25 +3,22 @@
 import MainLayout from './layouts/MainLayout'
 import Product from './components/Product'
 import CarouselComp from "./components/CarouselComp"
+import { useState, useEffect } from 'react'
 
 export default function Home() {
 
-  const products = [
-    {
-      id: 1,
-      title: "Brown Leather Bag",
-      description: "Random stuff",
-      url: "https://picsum.photos/id/7",
-      price: 6969
-    },
-    {
-      id: 2,
-      title: "School Books",
-      description: "Random stuff again",
-      url: "https://picsum.photos/id/20",
-      price:7000
-    }
-  ]
+  const [products, setProducts] = useState([])
+
+  const getProducts = async () => {
+    const response = await fetch("/api/products")
+    const prods = await response.json()
+
+    setProducts([])
+    setProducts(prods)
+  }
+
+  useEffect(() => {getProducts()}, [])
+
   return (
     <MainLayout>
       <CarouselComp />
