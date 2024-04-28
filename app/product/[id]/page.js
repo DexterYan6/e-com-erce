@@ -13,6 +13,7 @@ export default function Product({ params }) {
     const [product, setProduct] = useState({})
 
     const getProduct = async () => {
+        useIsLoading(true)
         setProduct({})
 
         const response = await fetch(`/api/product/${params.id}`)
