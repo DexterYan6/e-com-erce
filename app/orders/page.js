@@ -38,7 +38,7 @@ export default function Orders() {
                 <div className="bg-white w-full p-6 min-h-[150px]">
                     <div className="flex items-center text-xl">
                         <CiDeliveryTruck className="text-green-500" size={35}/>
-                        <span className="pl-4">Orders</span>
+                        <span className="pl-4">Your Orders</span>
                     </div>
 
                     {orders.length < 1 ?
@@ -49,30 +49,25 @@ export default function Orders() {
 
                     {orders.map(order => (
                         <div className="text-sm pl-[50px]">
-                            <div className="border-b py-1">
-                                <div className="pt-2">
+                            <div className="border border-gray-300 p-4 rounded-lg">
+                                <div className="pt-2 flex justify-between">
                                     <span className="font-bold mr-2">Order ID:</span>
-                                    {order?.stripe_id}
+                                    <span className="text-right">{order?.stripe_id}</span>
                                 </div>
 
-                                <div className="pt-2">
+                                <div className="pt-2 flex justify-between">
                                     <span className="font-bold mr-2">Delivery Address:</span>
-                                    {order?.name}, {order?.address}, {order?.zipcode}, {order?.city}, {order?.country}
+                                    <span className="text-right">{order?.name}, {order?.address}, {order?.zipcode}, {order?.city}, {order?.country}</span>
                                 </div>
 
-                                <div className="pt-2">
-                                    <span className="font-bold mr-2">Total:</span>
-                                    ${((order?.total / 100) * 1.13).toFixed(2)}
+                                <div className="pt-2 flex justify-between">
+                                    <span className="font-bold mr-2">Order Total:</span>
+                                    <span className="text-right">${((order?.total / 100) * 1.13).toFixed(2)}</span>
                                 </div>
 
-                                <div className="pt-2">
-                                    <span className="font-bold mr-2">Order created:</span>
-                                    {moment(order?.created_at).calendar()}
-                                </div>
-
-                                <div className="pt-2">
+                                <div className="pt-2 flex justify-between">
                                     <span className="font-bold mr-2">Delivery Time:</span>
-                                    {moment(order?.created_at).add(3, "days").calendar()}
+                                    <span className="text-right">{moment(order?.created_at).add(3, "days").calendar()}</span>
                                 </div>
 
                                 <div className="flex items-center gap-4">
