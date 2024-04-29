@@ -3,11 +3,11 @@ const useUserAddress = async () => {
     let response = await fetch("/api/address/get")
 
     if (response) {
-        let data = await response.json();
+        let data = await response.json()
         if (data) address = data
     }
 
     return address
 }
 
-export default useUserAddress;
+export default useUserAddress

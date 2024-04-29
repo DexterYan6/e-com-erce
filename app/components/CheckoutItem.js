@@ -20,17 +20,9 @@ export default function CheckoutItem({product}) {
                         ${(product.price / 100).toFixed(2)}
                     </span>
                 </div>
-
-                <div className="relative flex items-center text-[14px] text-gray-500">
-                    <div className="line-through">
-                        ${((product.price * 1.13) / 100).toFixed(2)}
-                    </div>
-                    <div className="px-2">-</div>
-                    <div className="line-through">13%</div>
-                </div>
                 
                 <div className="text-sm mt-2">
-                    {product.description.substring(0, 120)}...
+                    {product?.description.substring(0, 150)}...
                 </div>
 
                 {pathname=='/cart' ?
