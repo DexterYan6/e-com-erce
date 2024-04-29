@@ -7,6 +7,7 @@ import { toast } from "react-toastify"
 import { useState, useEffect } from "react"
 import { useUser } from "../context/user"
 import useIsLoading from "../context/useIsLoading"
+import moment from "moment";
 
 export default function Orders() {
 
@@ -50,7 +51,7 @@ export default function Orders() {
                         <div className="text-sm pl-[50px]">
                             <div className="border-b py-1">
                                 <div className="pt-2">
-                                    <span className="font-bold mr-2">Stripe ID:</span>
+                                    <span className="font-bold mr-2">Order ID:</span>
                                     {order?.stripe_id}
                                 </div>
 
@@ -61,7 +62,7 @@ export default function Orders() {
 
                                 <div className="pt-2">
                                     <span className="font-bold mr-2">Total:</span>
-                                    ${order?.total / 100}
+                                    ${((order?.total / 100) * 1.13).toFixed(2)}
                                 </div>
 
                                 <div className="pt-2">
@@ -77,7 +78,7 @@ export default function Orders() {
                                 <div className="flex items-center gap-4">
                                     {order?.orderItem.map(item => (
                                         <div key={item.id} className="flex items-center">
-                                            <Link href={`/product/${item.product_id}`} classname="py-1 hover:underline text-blue-500 font-bold">
+                                            <Link href={`/product/${item.product_id}`} className="py-1 hover:underline text-blue-500 font-bold">
                                                 <img className="rounded" width="120" src={item.product.url + '/120'}/>
                                                 {item.product.title}
                                             </Link>

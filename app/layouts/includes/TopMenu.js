@@ -6,10 +6,13 @@ import {AiOutlineShoppingCart} from "react-icons/ai"
 import {useState} from "react"
 import { useUser } from "@/app/context/user"
 import { useCart } from "@/app/context/cart"
+import { useRouter } from "next/navigation"
+import ClientOnly from "../../components/ClientOnly"
 
 export default function TopMenu() {
     const user = useUser()
     const cart = useCart()
+    const router = useRouter()
 
     const [isMenu, setIsMenu] = useState(false)
     
@@ -17,7 +20,7 @@ export default function TopMenu() {
         if (user && user?.id) {
             return (
                 <button className="flex items-center gap-2 hover:underline cursor-pointer" onClick={() => !isMenu ? setIsMenu(true) : setIsMenu(false)}>
-                    <div>Welcome {user.name}</div>
+                    <div>Hello, {user.name}</div>
                     <BsChevronDown />
                 </button>
             )
@@ -70,18 +73,20 @@ export default function TopMenu() {
                         <img width={32} src="/images/canada.png"/>
                         Eng
                     </li>
-                    <li className="px-3 hover:underline cursor-pointer">
-                        <div className="relative">
-                            <AiOutlineShoppingCart size={22} />
-                            {cart.cartCount() > 0 ?
-                                <div className="absolute text-[10px] -top-[2px] -right-[5px] bg-red-500 w-[14px] h-[14px] rounded-full text-white">
-                                    <div className="flex items-center justify-center -mt-[1px]">{cart.cartCount()}</div>
-                                </div>
-                            : <div></div>
-                            }
-                            
-                        </div>
-                    </li>
+                    <ClientOnly>
+                        <li className="px-3 hover:underline cursor-pointer">
+                            <div onClick={() => router.push('/cart')} className="relative">
+                                <AiOutlineShoppingCart size={22} />
+                                {cart.cartCount() > 0 ?
+                                    <div className="absolute text-[10px] -top-[2px] -right-[5px] bg-red-500 w-[14px] h-[14px] rounded-full text-white">
+                                        <div className="flex items-center justify-center -mt-[1px]">{cart.cartCount()}</div>
+                                    </div>
+                                : <div></div>
+                                }
+                                
+                            </div>
+                        </li>
+                    </ClientOnly>
                 </ul>
             </div>
         </div>
