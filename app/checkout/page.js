@@ -98,7 +98,7 @@ export default function Checkout() {
         }
         
         let result = await stripe.current.confirmCardPayment(clientSecret.current, {
-            payment_method: { card: card.current },
+            payment_method: { card: card.current }
         })
     
         if (result.error) {

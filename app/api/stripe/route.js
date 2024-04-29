@@ -20,9 +20,8 @@ export async function POST(req) {
         const stripe = require("stripe")(stripe_sk_key);
 
         const res = await stripe.paymentIntents.create({
-            amount: Number(body.amount),
-            currency: 'cad',
-            automatic_payment_methods: { enabled: true }
+            amount: Math.round(Number(body.amount) * 1.13),
+            currency: 'cad'
         });
         
         return NextResponse.json(res)
