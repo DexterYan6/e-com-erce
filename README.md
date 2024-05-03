@@ -11,5 +11,5 @@ https://e-com-erce.vercel.app/
 * Vercel - deployment
 
 ## To fill out stripe form:
-Use card number ```4242 4242 4242 4242
+Use card number ```4242 4242 4242 4242```
 
