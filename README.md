@@ -1,5 +1,5 @@
 # e-com-merce
-E-commerce site replicating eBay's UI and layout.
+E-commerce site replicating eBay's UI and layout. 
 
 ## Live demo:
 https://e-com-erce.vercel.app/
@@ -11,5 +11,7 @@ https://e-com-erce.vercel.app/
 * Vercel - deployment
 
 ## To fill out stripe form:
-Use card number code/4242 4242 4242 4242.
+Use card number 
+##
+<tab><tab>code/4242 4242 4242 4242
 
