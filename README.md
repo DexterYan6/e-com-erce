@@ -11,5 +11,6 @@ https://e-com-erce.vercel.app/
 * Vercel - deployment
 
 ## To fill out stripe form:
-Use card number ```4242 4242 4242 4242```
-
+* Use card number ```4242 4242 4242 4242```
+* Use any valid future date e.g. ```12/34```
+* Any 3 digits for CVC
